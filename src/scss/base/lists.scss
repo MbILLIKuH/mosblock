@@ -1,0 +1,212 @@
+ul, li {
+  @include settings-default;
+}
+
+ul, ol {
+  margin: 0 0 .75rem;
+  padding: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+li {
+  @include text-default;
+  margin-bottom: .75rem;
+  list-style-position: inside;
+  font-size: $base-font-size;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+ul {
+  li {
+    position: relative;
+    list-style: none;
+    padding-left: 1.75rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: calc(50% - 1px);
+      left: 0;
+      width: 1rem;
+      height: 2px;
+      background: $green;
+    }
+  }
+
+  &.-menu {
+    margin: 0;
+
+    li {
+      margin: 0;
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &.-menu-mrg {
+    margin: -.25rem;
+
+    &:last-child {
+      margin-bottom: -.25rem;
+    }
+
+    li {
+      margin: 0;
+      padding: .25rem;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+
+  &.-tabs {
+    @include flex;
+    margin: -1rem;
+
+    &:last-child {
+      margin-bottom: -1rem;
+    }
+
+    & > li {
+      @include flex-start-middle-no-wrap;
+      @include interaction;
+      position: relative;
+      margin: 1rem;
+      padding: 0;
+      transition: color $duration $animation;
+      color: $grey-dark;
+      font-size: $middle-font-size;
+      font-weight: 700;
+
+      & > span {
+        transition: color $duration $animation;
+        color: $grey-dark;
+        font-size: $middle-font-size;
+        font-weight: 400;
+
+        &:first-child {
+          font-weight: 700;
+        }
+
+        &:not(:first-child) {
+          margin-left: .5rem;
+        }
+      }
+
+      &::before {
+        display: none;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        opacity: 0;
+        bottom: -.75rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        transition: opacity $duration $animation;
+        background-color: $green;
+      }
+
+      &:hover {
+        color: $orange;
+      }
+
+      &.-active {
+        color: $black;
+
+        & > span {
+          color: $black;
+        }
+
+        &::after {
+          opacity: 1;
+        }
+
+        &:hover {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &.-pgn { //Pagination
+    @include flex;
+    margin: -.25rem;
+
+    &:last-child {
+      margin-bottom: -.25rem;
+    }
+
+    & > li {
+      @include flex-center-middle-no-wrap;
+      overflow: hidden;
+      user-select: none;
+      width: 48px;
+      height: 48px;
+      margin: .25rem;
+      padding: 0;
+      transition: background-color $duration $animation, color $duration $animation;
+      background-color: $white;
+      border-radius: 10px;
+      font-weight: 700;
+
+      &::before {
+        display: none;
+      }
+
+      &.-active {
+        background-color: $green;
+        color: $white;
+      }
+
+      &.-disable {
+        background-color: $grey;
+      }
+
+      svg {
+        display: block;
+        width: 20px;
+        height: 20px;
+
+        path {
+          transition: stroke $duration $animation;
+          stroke: $grey-dark;
+          stroke-width: 3px;
+        }
+      }
+
+      & > a {
+        @include flex-center-middle-no-wrap;
+        width: 100%;
+        height: 100%;
+        transition: background-color $duration $animation, color $duration $animation;
+        color: $grey-dark;
+
+        &:hover {
+          background-color: $green-disable;
+          color: $green;
+
+          svg {
+            path {
+              stroke: $green;
+            }
+          }
+        }
+      }
+    }
+  }
+}

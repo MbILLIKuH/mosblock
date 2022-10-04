@@ -1,0 +1,350 @@
+//Font faces//
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/src/fonts/TTNormsProLight.eot');
+  src: url('/src/fonts/TTNormsProLight.eot') format('embedded-opentype'),
+  url('/src/fonts/TTNormsProLight.woff2') format('woff2'),
+  url('/src/fonts/TTNormsProLight.woff') format('woff'),
+  url('/src/fonts/TTNormsProLight.ttf') format('truetype'),
+  url('/src/fonts/TTNormsProLight.svg#TTNormsProLight') format('svg');
+  font-style: normal;
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/src/fonts/TTNormsProRegular.eot');
+  src: url('/src/fonts/TTNormsProRegular.eot') format('embedded-opentype'),
+  url('/src/fonts/TTNormsProRegular.woff2') format('woff2'),
+  url('/src/fonts/TTNormsProRegular.woff') format('woff'),
+  url('/src/fonts/TTNormsProRegular.ttf') format('truetype'),
+  url('/src/fonts/TTNormsProRegular.svg#TTNormsProRegular') format('svg');
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/src/fonts/TTNormsProMedium.eot');
+  src: url('/src/fonts/TTNormsProMedium.eot') format('embedded-opentype'),
+  url('/src/fonts/TTNormsProMedium.woff2') format('woff2'),
+  url('/src/fonts/TTNormsProMedium.woff') format('woff'),
+  url('/src/fonts/TTNormsProMedium.ttf') format('truetype'),
+  url('/src/fonts/TTNormsProMedium.svg#TTNormsProMedium') format('svg');
+  font-style: normal;
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  src: url('/src/fonts/TTNormsProBold.eot');
+  src: url('/src/fonts/TTNormsProBold.eot') format('embedded-opentype'),
+  url('/src/fonts/TTNormsProBold.woff2') format('woff2'),
+  url('/src/fonts/TTNormsProBold.woff') format('woff'),
+  url('/src/fonts/TTNormsProBold.ttf') format('truetype'),
+  url('/src/fonts/TTNormsProBold.svg#TTNormsProBold') format('svg');
+  font-style: normal;
+  font-weight: 700;
+}
+
+//Variables//
+//Page
+$container-width-max: 1300px;
+$container-narrow-width-max: 850px;
+$container-width: 95%;
+
+//Fonts
+$ff: 'TT Norms Pro';
+$ff-icon: 'Material Design Icons';
+$base-line-height: 1.5;
+$small-line-height: 1.25;
+$base-font-size: 16px;
+$big-font-size: 24px;
+$middle-font-size: 20px;
+$medium-font-size: 18px;
+$small-font-size: 14px;
+$smallest-font-size: 12px;
+
+//Colors
+$white: #FFFFFF;
+$black: #241F1F;
+$black-bright: #504C4C;
+$black-light: #737070;
+$grey: #E4E2E2;
+$grey-dark: #A7A6A6;
+$grey-bright: #CAC9C9;
+$grey-light: #F8F8F8;
+$green: #41B93C;
+$green-hover: #66C662;
+$green-pressed: #42A93D;
+$green-disable: #D2EED0;
+$green-light: #F0FAF0;
+$green-light-hover: #E0F4E0;
+$green-light-text: #30872B;
+$green-light-text-disable: #AFDFAD;
+$orange: #F55C47;
+$orange-hover: #F77D6C;
+$orange-pressed: #E57767;
+$orange-disable: #FDD8D3;
+$orange-light: #FFF2F1;
+$orange-light-hover: #FDE5E1;
+$orange-light-text-disable: #FBBEB5;
+$yellow: #F7CA18;
+
+//Duration
+$duration: .5s;
+
+//Animation
+$animation: ease;
+
+//Image
+$url: '/src/img/';
+
+//Box-shadow
+$box-shadow: 0 4px 40px rgba(0, 0, 0, .12);
+$box-shadow-light: 0 4px 24px rgba(0, 0, 0, .08);
+$box-shadow-slider: 0 .25rem .75rem rgba(0, 0, 0, .12);
+$box-shadow-dark-small: 0 1px 4px rgba(0, 0, 0, .15);
+
+//Mixins//
+//Default elements settings
+@mixin settings-default {
+  box-sizing: border-box;
+  outline: none;
+}
+
+@mixin interaction {
+  cursor: pointer;
+  user-select: none;
+}
+
+@mixin text-default {
+  color: $black;
+  font-family: $ff;
+}
+
+//Flex
+@mixin flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin flex-around {
+  @include flex;
+  justify-content: space-around;
+}
+
+@mixin flex-between {
+  @include flex;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  @include flex;
+  justify-content: flex-start;
+}
+
+@mixin flex-end {
+  @include flex;
+  justify-content: flex-end;
+}
+
+@mixin flex-between-top {
+  @include flex-between;
+  align-items: flex-start;
+}
+
+@mixin flex-between-middle {
+  @include flex-between;
+  align-items: center;
+}
+
+@mixin flex-start-middle {
+  @include flex-start;
+  align-items: center;
+}
+
+@mixin flex-start-middle-no-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flex-between-top-no-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+@mixin flex-between-middle-no-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-center-middle-no-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+//Image block
+@mixin image-block {
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+//Selector type
+@mixin selector-type {
+  @include flex-start-middle-no-wrap;
+  @include interaction;
+  margin: .25rem;
+  padding: .5rem .75rem;
+  transition: background-color $duration $animation, color $duration $animation;
+  background-color: $grey;
+  border-radius: 40px;
+  color: $black-bright;
+  font-size: $small-font-size;
+  font-weight: 500;
+
+  & > svg {
+    display: block;
+    width: 19px;
+    height: 19px;
+    font-size: 0;
+
+    path {
+      transition: fill $duration $animation;
+      fill: $black-bright;
+    }
+  }
+
+  &:hover {
+    background-color: $green-hover;
+    color: $white;
+
+    & > svg {
+      path {
+        fill: $white;
+      }
+    }
+  }
+}
+
+//Buttons
+//Green button
+@mixin button-green {
+  background-color: $green;
+  color: $white;
+
+  & > span {
+    color: $white;
+  }
+}
+
+@mixin button-green-hover {
+  background-color: $green-hover;
+}
+
+@mixin button-green-pressed {
+  background-color: $green-pressed;
+}
+
+@mixin button-green-disable {
+  cursor: default;
+  background-color: $green-disable;
+
+  &:hover {
+    background-color: $green-disable;
+  }
+}
+
+//Green light button
+@mixin button-green-light {
+  background-color: $green-light;
+  color: $green-light-text;
+
+  & > span {
+    color: $green-light-text;
+  }
+}
+
+@mixin button-green-light-hover {
+  background-color: $green-light-hover;
+}
+
+@mixin button-green-light-pressed {
+  background-color: $green-disable;
+}
+
+@mixin button-green-light-disable {
+  cursor: default;
+  color: $green-light-text-disable;
+
+  & > span {
+    color: $green-light-text-disable;
+  }
+
+  &:hover {
+    background-color: $green-light;
+  }
+}
+
+//Orange button
+@mixin button-orange {
+  color: $white;
+  background-color: $orange;
+
+  & > span {
+    color: $white;
+  }
+}
+
+@mixin button-orange-hover {
+  background-color: $orange-hover;
+}
+
+@mixin button-orange-pressed {
+  background-color: $orange-pressed;
+}
+
+@mixin button-orange-disable {
+  cursor: default;
+  background-color: $orange-disable;
+
+  &:hover {
+    background-color: $orange-disable;
+  }
+}
+
+//Orange light button
+@mixin button-orange-light {
+  color: $orange;
+  background-color: $orange-light;
+
+  & > span {
+    color: $orange;
+  }
+}
+
+@mixin button-orange-light-hover {
+  background-color: $orange-light-hover;
+}
+
+@mixin button-orange-light-pressed {
+  background-color: $orange-disable;
+}
+
+@mixin button-orange-light-disable {
+  cursor: default;
+  color: $orange-light-text-disable;
+
+  & > span {
+    color: $orange-light-text-disable;
+  }
+
+  &:hover {
+    background-color: $orange-light;
+  }
+}

@@ -1,0 +1,492 @@
+//Shop catalog//
+.shop-catalog {
+  overflow: hidden;
+  padding: 4rem 0 3rem;
+
+  .container {
+    @include flex-between-top;
+  }
+
+  &__top {
+    flex-wrap: wrap;
+  }
+
+  &__filter-btn {
+    display: none;
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: $white;
+    text-align: left;
+
+    &:hover {
+      @include button-green-light-hover;
+      color: $green-light-text;
+
+      & > svg {
+        path {
+          fill: $green-light-text;
+        }
+      }
+    }
+  }
+
+  //Products//
+  &__filter-wrap {
+    width: 300px;
+  }
+
+  &__filter {
+    padding: 0 1rem 1rem;
+    background-color: $white;
+    border-radius: 10px;
+  }
+
+  &__filter-back {
+    position: relative;
+    display: none;
+    overflow: hidden;
+    width: calc(100% - 2rem);
+    padding-left: 1.75rem;
+    margin: 0 1rem .5rem;
+    background: none;
+    border-radius: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::before {
+      content: '\F0141';
+      position: absolute;
+      display: block;
+      top: calc(50% - 10px);
+      left: 0;
+      width: 20px;
+      height: 20px;
+      line-height: 1;
+      color: $green;
+      font-size: $middle-font-size;
+      font-family: $ff-icon;
+      font-weight: 400;
+    }
+  }
+
+  &__filter-item {
+    border-bottom: 1px solid $grey;
+  }
+
+  &__filter-title {
+    @include interaction;
+    position: relative;
+    padding: 1.5rem 0 1.5rem 2.25rem;
+
+    &::before {
+      content: '\F0140';
+      position: absolute;
+      display: block;
+      top: calc(50% - 12px);
+      left: 0;
+      width: 24px;
+      height: 24px;
+      transition: background-color $duration $animation, color $duration $animation;
+      background-color: $grey;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 1;
+      color: $black;
+      font-family: $ff-icon;
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    span {
+      transition: color $duration $animation;
+      font-weight: 500;
+    }
+
+    &:hover {
+      &::before {
+        background-color: $green-light;
+        color: $orange;
+      }
+
+      span {
+        color: $orange;
+      }
+    }
+
+    &.-active {
+      &::before {
+        content: '\F0143';
+      }
+    }
+  }
+
+  &__filter-form {
+    display: none;
+    opacity: 0;
+    transition: opacity $duration $animation;
+    padding-bottom: 1.5rem;
+
+    &.-visible {
+      opacity: 1;
+    }
+  }
+
+  &__filter-price-input-block {
+    @include flex-between-middle-no-wrap;
+    margin: -.5rem;
+  }
+
+  &__filter-price-input-wrap {
+    position: relative;
+    width: 50%;
+    margin: .5rem;
+
+    & > label {
+      position: absolute;
+      top: 50%;
+      left: .75rem;
+      transform: translateY(-50%);
+      line-height: 1;
+      color: $grey-dark;
+    }
+  }
+
+  &__filter-price-input {
+    background-color: $grey;
+    width: 100%;
+    padding: .5rem .75rem .5rem 2.25rem;
+    -moz-appearance: textfield;
+
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  &__filter-switch {
+    @include flex-between-middle-no-wrap;
+    user-select: none;
+    padding: 1.5rem 0;
+  }
+
+  &__filter-switch-title {
+    display: flex;
+    align-items: center;
+
+    span {
+      &:first-child {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__filter-switch-quantity {
+    margin-left: .25rem;
+    color: $grey-dark;
+  }
+
+  &__filter-buttons {
+    margin-top: 2rem;
+
+    & > button {
+      width: 100%;
+      margin-bottom: .5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      & > span {
+        margin-left: .25rem;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &__filter-submit-btn {
+    @include button-green;
+
+    & > span {
+      color: $white;
+      font-size: $base-font-size;
+    }
+
+    &:hover {
+      @include button-green-hover;
+    }
+  }
+
+  &__filter-clear-btn {
+    @include button-green-light;
+
+    &:hover {
+      @include button-green-light-hover;
+    }
+  }
+
+  &__sort {
+    display: flex;
+    margin-bottom: 2rem;
+  }
+
+  &__sort-title {
+    margin-right: .75rem;
+
+    span {
+      line-height: $base-line-height;
+      color: $grey-bright;
+      font-weight: 500;
+    }
+  }
+
+  &__sort-list {
+    @include flex;
+    margin: -.5rem;
+  }
+
+  &__sort-item {
+    position: relative;
+    display: block;
+    margin: .5rem;
+    padding-right: 1.25rem;
+    color: $grey-dark;
+    font-weight: 500;
+
+    &::after {
+      content: '\F0140';
+      position: absolute;
+      display: block;
+      top: calc(50% - 10px);
+      right: 0;
+      width: 20px;
+      height: 20px;
+      transition: color $duration $animation;
+      text-align: center;
+      line-height: 1;
+      color: $grey-dark;
+      font-family: $ff-icon;
+      font-size: 20px;
+      font-weight: normal;
+    }
+
+    &:hover {
+      &::after {
+        color: $orange;
+      }
+    }
+
+    &.-active {
+      color: $black;
+
+      &::after {
+        color: $black;
+      }
+
+      &:hover {
+        color: $orange;
+
+        &::after {
+          color: $orange;
+        }
+      }
+    }
+
+    &.-big-to-small {
+      &::after {
+        content: '\F0140';
+      }
+    }
+
+    &.-small-to-big {
+      &::after {
+        content: '\F0143';
+      }
+    }
+  }
+
+  &__products {
+    width: calc(100% - 300px);
+    padding-left: 2rem;
+  }
+
+  &__products-filter {
+    overflow: auto;
+    margin-bottom: 2rem;
+
+    input {
+      &[type="radio"], &[type="checkbox"] {
+        & + label {
+          font-size: $base-font-size;
+        }
+      }
+    }
+  }
+
+  &__products-list {
+    @include flex;
+    width: calc(100% + 2rem);
+    margin: -1rem;
+
+    .shop-item__block {
+      width: calc(100% / 3);
+    }
+  }
+
+  //Collections and Categories//
+  &__collection, &__category {
+    @include flex;
+    width: calc(100% + 2rem);
+    margin: -1rem;
+  }
+}
+
+.shop-collection {
+  &__item {
+    width: calc(100% / 3);
+    padding: 1rem;
+  }
+
+  &__link {
+    display: block;
+    transition: box-shadow $duration $animation;
+
+    &:hover {
+      box-shadow: $box-shadow;
+
+      .shop-collection__info {
+        background-color: $white;
+
+        &::after {
+          color: $orange;
+        }
+      }
+
+      .shop-collection__title {
+        span {
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  &__link-inner {
+    @include image-block;
+    position: relative;
+    padding-top: 77%;
+    background-color: $white;
+    border-radius: 10px;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    width: calc(100% - 2rem);
+    padding: .75rem 2.75rem .75rem 1rem;
+    transition: background-color $duration $animation;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+
+    &::after {
+      content: '\F0142';
+      position: absolute;
+      display: block;
+      top: calc(50% - 15px);
+      right: .5rem;
+      width: 30px;
+      height: 30px;
+      transition: color $duration $animation;
+      text-align: center;
+      line-height: 1;
+      color: $black-bright;
+      font-family: $ff-icon;
+      font-size: 30px;
+      font-weight: normal;
+    }
+  }
+
+  &__title {
+    span {
+      transition: color $duration $animation;
+      font-size: $middle-font-size;
+      font-weight: 700;
+    }
+  }
+
+  &__quantity {
+    span {
+      color: $black-bright;
+      font-weight: 500;
+    }
+  }
+}
+
+.shop-category {
+  &__item {
+    width: 50%;
+    padding: 1rem;
+  }
+
+  &__link {
+    @include flex-between-middle-no-wrap;
+    position: relative;
+    width: 100%;
+    padding: 1rem 3rem 1rem 1.5rem;
+    transition: box-shadow $duration $animation;
+    background-color: $white;
+    border-radius: 10px;
+
+    &::after {
+      content: '\F0142';
+      position: absolute;
+      display: block;
+      top: calc(50% - 15px);
+      right: .5rem;
+      width: 30px;
+      height: 30px;
+      transition: color $duration $animation;
+      text-align: center;
+      line-height: 1;
+      color: $green;
+      font-family: $ff-icon;
+      font-size: 30px;
+      font-weight: normal;
+    }
+
+    &:hover {
+      box-shadow: $box-shadow;
+
+      &::after {
+        color: $orange;
+      }
+
+      .shop-category__title {
+        span {
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  &__title {
+    @include flex-start-middle-no-wrap;
+
+    span {
+      transition: color $duration $animation;
+      font-weight: 700;
+    }
+  }
+
+  &__img {
+    @include image-block;
+    min-width: 64px;
+    width: 64px;
+    height: 64px;
+    margin-right: 1rem;
+    border-radius: 10px;
+  }
+
+  &__quantity {
+    padding-left: 1.5rem;
+  }
+}

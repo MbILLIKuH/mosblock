@@ -1,0 +1,148 @@
+//Blocks//
+//Global blocks
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: $grey-light;
+  font-size: $base-font-size;
+  margin: 0;
+
+  &.-hidden, &.-popup {
+    overflow: hidden;
+  }
+}
+
+div {
+  @include settings-default;
+}
+
+.header, .global, .footer {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.global {
+  flex: 1 0 auto;
+  padding-bottom: 3rem;
+
+  &.-center {
+    @include flex-center-middle-no-wrap;
+    width: 100%;
+    padding-top: 3rem;
+  }
+}
+
+//Section
+.-section-default, .-section-btm-pad {
+  overflow: hidden;
+}
+
+.-section-default {
+  padding: 3rem 0;
+}
+
+.-section-btm-pad {
+  padding-bottom: 3rem;
+}
+
+//Container
+.container {
+  max-width: $container-width-max;
+  width: $container-width;
+  margin: 0 auto;
+}
+
+.-narrow {
+  max-width: $container-narrow-width-max;
+}
+
+//Top blocks
+.-top-block {
+  @include flex-between-top-no-wrap;
+  width: 100%;
+  margin-bottom: 3.5rem;
+}
+
+.-top-flex-grow {
+  flex-grow: 1;
+  padding-right: 2rem;
+
+  h1, h2 {
+    margin-bottom: 0;
+  }
+}
+
+//Block with description
+.-mrg-block {
+  @include flex;
+  width: calc(100% + 2rem);
+  margin: -1.5rem -1rem 1.5rem;
+
+  &:last-child {
+    margin-bottom: -1.5rem;
+  }
+
+  &.-landscape-gallery, &.-portrait-gallery {
+    .-mrg-inner {
+      margin: 0;
+
+      & > p {
+        text-align: center;
+        font-weight: 400;
+      }
+    }
+  }
+
+  &.-landscape-gallery {
+    .-mrg-inner {
+      width: calc(100% / 3);
+    }
+
+    .-mrg-img {
+      padding-top: 71.5%;
+    }
+  }
+
+  &.-portrait-gallery {
+    .-mrg-inner {
+      width: 25%;
+    }
+
+    .-mrg-img {
+      padding-top: 139.5%;
+    }
+  }
+}
+
+.-mrg-inner {
+  display: block;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+
+  & > img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  & > p {
+    margin-top: .5rem;
+    font-weight: 500;
+  }
+
+  &.-video {
+    max-width: 850px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.-mrg-img {
+  @include image-block;
+  display: block;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+}

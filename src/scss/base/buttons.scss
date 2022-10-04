@@ -1,0 +1,257 @@
+//Buttons//
+//Default button
+button, .btn-default {
+  @include interaction;
+  display: inline-block;
+  padding: .75rem 1rem;
+  transition: color $duration $animation, background-color $duration $animation;
+  outline: 0;
+  border: none;
+  border-radius: .5rem;
+  text-align: center;
+  line-height: $base-line-height;
+  font-size: $base-font-size;
+  font-family: $ff;
+  font-weight: 700;
+}
+
+//Social link button
+.btn-social {
+  @include flex-center-middle-no-wrap;
+  @include interaction;
+  width: 32px;
+  height: 32px;
+  margin: .25rem;
+  transition: box-shadow $duration $animation;
+  background-color: $white;
+  border-radius: 5px;
+
+  & > svg {
+    display: block;
+    margin: 0 auto;
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow-dark-small;
+  }
+
+  &.-grey {
+    background-color: $grey-light;
+  }
+}
+
+//Header shop button
+.btn-qnt {
+  @include interaction;
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 32px;
+
+  & > svg {
+    width: 32px;
+    height: 32px;
+
+    path {
+      transition: fill $duration $animation, stroke $duration $animation;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    overflow: hidden;
+    display: block;
+    top: -.5rem;
+    right: -.75rem;
+    width: 22px;
+    height: 22px;
+    background-color: $green;
+    border-radius: 50%;
+    line-height: 22px;
+    text-align: center;
+    color: $white;
+    font-size: $small-font-size;
+  }
+
+  &:hover {
+    & > svg {
+      path {
+        fill: $orange;
+      }
+    }
+  }
+}
+
+//Button with left svg icon
+.btn-svg-icon {
+  position: relative;
+  padding-left: 2.75rem;
+
+  & > svg {
+    position: absolute;
+    display: block;
+    top: calc(50% - 10px);
+    left: 1rem;
+    width: 20px;
+    height: 20px;
+
+    path {
+      transition: fill $duration $animation, stroke $duration $animation;
+    }
+  }
+}
+
+//Button with right arrow
+.btn-arrow {
+  @include flex-center-middle-no-wrap;
+  @include button-green;
+  position: relative;
+  white-space: nowrap;
+
+  & > svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-left: .5rem;
+
+    path {
+      transition: stroke $duration $animation;
+      stroke-width: 3px;
+      stroke: $white;
+    }
+  }
+
+  &:hover {
+    @include button-green-hover;
+    color: $white;
+  }
+
+  span {
+    max-width: calc(100% - 20px - .5rem);
+  }
+}
+
+//Button to show more products
+.more-btn {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: $white;
+  border-radius: 10px;
+  color: $green;
+
+  &:hover {
+    @include button-green-light-hover;
+  }
+}
+
+//Button to show more filters
+.filter-more-btn {
+  @include flex-center-middle-no-wrap;
+  @include button-green-light;
+  width: 100%;
+  margin-top: 1rem;
+  padding: .5rem 1rem;
+  border-radius: 10px;
+
+  span {
+    font-size: $small-font-size;
+    font-weight: 500;
+
+    &.filter-more-btn__quantity {
+      margin-left: .25rem;
+      font-weight: 400;
+    }
+  }
+
+  &:hover {
+    @include button-green-light-hover;
+  }
+}
+
+//Scroll to top button//
+#scroll-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 7;
+  right: 30px;
+  bottom: 50px;
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  transition: opacity $duration $animation, box-shadow $duration $animation;
+  background-color: $white;
+  border: 1px solid $grey;
+  border-radius: 50%;
+  box-shadow: $box-shadow-light;
+
+  &.-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &::before {
+    content: '\F0143';
+    position: absolute;
+    opacity: 1;
+    top: calc(50% - 12px);
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 24px;
+    transition: color $duration $animation;
+    text-align: center;
+    line-height: 1;
+    color: $green;
+    font-family: $ff-icon;
+    font-size: $big-font-size;
+    font-weight: normal;
+  }
+
+  &:hover {
+    box-shadow: $box-shadow;
+
+    &::before {
+      color: $orange;
+    }
+  }
+}
+
+//Selector type buttons
+.-selector {
+  a, button {
+    @include selector-type;
+  }
+}
+
+//Header mobile button
+.btn-header-mobile {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: .25rem;
+  padding: 0;
+  transition: background-color $duration $animation;
+  background-color: $grey-light;
+  border-radius: 10px;
+
+  & > svg {
+    position: absolute;
+    display: block;
+    top: calc(50% - 10px);
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 20px;
+
+    path {
+      stroke: $black-light;
+    }
+  }
+
+  &.-active {
+    @include button-orange-light-hover;
+  }
+}

@@ -1,0 +1,166 @@
+.article-page {
+  .breadcrumb {
+    margin-bottom: .75rem;
+
+    & > ul {
+      justify-content: center;
+    }
+  }
+
+  &__title {
+    text-align: center;
+
+    h1 {
+      margin: 0;
+    }
+
+    h2 {
+      margin-bottom: 3rem;
+    }
+  }
+
+  &__date {
+    margin-top: .5rem;
+    text-align: center;
+
+    & > span {
+      color: $grey-dark;
+    }
+  }
+
+  &__info {
+    margin-top: 3rem;
+
+    .-mrg-inner {
+      img {
+        margin: 0 auto;
+      }
+    }
+
+    img {
+      display: block;
+      margin: 0 auto 2rem;
+      border-radius: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    p {
+      &.-medium {
+        font-weight: 500;
+      }
+    }
+
+    ul {
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__mrg-block {
+    @include flex;
+    justify-content: space-around;
+    margin: -1.5rem -1rem 1.5rem;
+    width: calc(100% + 2rem);
+
+    &:first-child {
+      margin-top: -1.5rem;
+    }
+
+    &:last-child {
+      margin-bottom: -1.5rem;
+    }
+  }
+
+  &__mrg-inner {
+    padding: 1.5rem 1rem;
+
+    & > img {
+      display: block;
+      margin: 0 auto;
+    }
+
+    & > p {
+      margin-top: .5rem;
+      font-weight: 500;
+    }
+
+    &.-video {
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  &__slider {
+    opacity: 0;
+
+    &.slick-slider {
+      opacity: 1;
+    }
+  }
+
+  &__list {
+    @include flex;
+    margin: -1rem;
+  }
+}
+
+.message-page {
+  width: 100%;
+
+  &.-error404 {
+    .message-page__inner {
+      background-image: url($url + 'sad_smile.png');
+    }
+  }
+
+  &.-order {
+    .message-page__inner {
+      background-image: url($url + 'confirm_icon.png');
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 150px;
+    background-position: 50% 0;
+    background-repeat: no-repeat;
+    background-size: 128px 128px;
+    text-align: center;
+  }
+
+  &__title {
+    display: block;
+    margin: 0 0 1rem;
+  }
+
+  &__desc {
+    margin-bottom: 1.5rem;
+    font-size: $medium-font-size;
+    font-weight: 500;
+  }
+
+  &__e-mail {
+    color: $green;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  &__btn {
+    @include button-green;
+
+    &:hover {
+      @include button-green-hover;
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,580 @@
+//Slick slider//
+.slick {
+  &-list {
+    width: 100%;
+  }
+
+  &-track {
+    margin-left: 0;
+  }
+
+  &-vertical {
+    .slick-dots {
+      flex-direction: column;
+      width: auto;
+
+      & > li {
+        width: 4px;
+        height: 16px;
+
+        button {
+          width: 4px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  &-arrow {
+    z-index: 2;
+    opacity: 1;
+    top: calc(50% - 32px);
+    width: 64px;
+    height: 64px;
+    transform: none;
+    transition: box-shadow $duration $animation;
+    background-color: $white;
+    border-radius: 50%;
+    box-shadow: $box-shadow-light;
+
+    &::before {
+      position: absolute;
+      display: block;
+      opacity: 1;
+      top: calc(50% - 12px);
+      left: calc(50% - 12px);
+      width: 24px;
+      height: 24px;
+      transition: color $duration $animation;
+      text-align: center;
+      line-height: 1;
+      color: $green;
+      font-family: $ff-icon;
+      font-size: $big-font-size;
+      font-weight: normal;
+    }
+
+    &:hover, &:focus {
+      opacity: 1;
+      background-color: $white;
+    }
+
+    &:hover {
+      box-shadow: $box-shadow;
+
+      &::before {
+        color: $orange;
+      }
+    }
+
+    &.slick-disabled {
+      visibility: hidden;
+    }
+  }
+
+  &-prev {
+    left: -1rem;
+
+    &::before {
+      content: '\F0141';
+    }
+  }
+
+  &-next {
+    right: -1rem;
+
+    &::before {
+      content: '\F0142';
+    }
+  }
+
+  &-dots {
+    @include flex-start-middle;
+    margin: -5px;
+
+    & > li {
+      width: 16px;
+      height: 4px;
+      margin: 5px;
+
+      &:last-child {
+        margin-bottom: 5px;
+      }
+
+      &::before {
+        display: none;
+      }
+
+      button {
+        display: block;
+        width: 16px;
+        height: 4px;
+        padding: 0;
+        margin: 0 auto;
+        background-color: $green-light-hover;
+
+        &::before {
+          display: none;
+        }
+
+        &:hover {
+          background-color: $green-hover;
+        }
+      }
+
+      &.slick-active {
+        button {
+          background-color: $green;
+        }
+      }
+    }
+  }
+}
+
+//Range Slider//
+.irs--round {
+  .irs {
+    &-grid {
+      display: none;
+    }
+
+    &-line, &-bar, &-handle {
+      @include interaction;
+    }
+
+    &-line {
+      background-color: $grey;
+    }
+
+    &-bar {
+      background-color: $green;
+    }
+
+    &-handle {
+      top: 28px;
+      width: 20px;
+      height: 20px;
+      transition: background-color $duration $animation;
+      background-color: $green;
+      border: 2px solid $white;
+
+      &:hover {
+        background-color: $orange;
+      }
+
+      &.state_hover {
+        background-color: $orange;
+      }
+    }
+
+    &-min, &-max, &-from, &-to, &-single {
+      display: none;
+      font-size: $smallest-font-size;
+      font-weight: 500;
+    }
+
+    &-min, &-max {
+      color: $black;
+    }
+
+    &-from, &-to, &-single {
+      background-color: $green;
+
+      &::before {
+        border-top-color: $green;
+      }
+    }
+  }
+}
+
+//Light gallery style//
+.lg {
+  &-sub-html {
+    font-family: $ff;
+  }
+}
+
+//Tabs//
+.-tab-blocks {
+  position: relative;
+  width: 100%;
+
+  .-tab-box {
+    opacity: 0;
+
+    &.-active {
+      opacity: 1;
+    }
+  }
+}
+
+.-tab-box, .-input-tab {
+  @include flex;
+  position: absolute;
+  visibility: hidden;
+  left: -9999px;
+  width: 100%;
+  transition: opacity $duration $animation;
+
+  &.-active {
+    position: relative;
+    visibility: visible;
+    left: auto;
+  }
+}
+
+//Product slider//
+.-prod-slider {
+  @include flex;
+  opacity: 0;
+  width: calc(100% + 2rem);
+  margin: -1rem;
+
+  &.slick-slider {
+    opacity: 1;
+  }
+
+  &.-tab-box {
+    opacity: 0;
+
+    &.-active {
+      opacity: 1;
+    }
+  }
+
+  .slick {
+    &-track, &-slide {
+      display: flex;
+    }
+
+    &-slide {
+      height: auto;
+    }
+  }
+
+  .shop-item {
+    &__block {
+      width: 25%;
+    }
+  }
+}
+
+.-input-tab {
+  opacity: 0;
+  margin-top: 2rem;
+
+  &.-active {
+    opacity: 1;
+  }
+}
+
+//Overlay//
+.menu-overlay {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: opacity $duration $animation;
+  background: rgba(36, 31, 31, 0.5);
+
+  &.-active {
+    z-index: 7;
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+//Breadcrumb//
+.breadcrumb {
+  width: 100%;
+  margin-bottom: 1rem;
+
+  & > ul {
+    @include flex;
+    align-items: center;
+
+    & > li {
+      position: relative;
+      padding-right: 1.5rem;
+      color: $grey-dark;
+
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: calc(50% - 1px);
+        right: .25rem;
+        width: 12px;
+        height: 2px;
+        background-color: $grey-dark;
+      }
+
+      & > a {
+        display: inline-block;
+        color: $black;
+
+        &:hover {
+          color: $orange;
+        }
+      }
+
+      &:last-child {
+        padding-right: .25rem;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+//Pagination//
+.pagination-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 2.5rem;
+}
+
+//Items on page selector//
+.items-on-page {
+  @include flex;
+  align-items: center;
+  position: relative;
+
+  & > span {
+    color: $grey-dark;
+    font-size: 14px;
+    padding-right: .75rem;
+  }
+
+  & > button {
+    @include flex-center-middle-no-wrap;
+
+    & > span {
+      transition: color $duration $animation;
+      color: $black-bright;
+    }
+
+    & > svg {
+      width: 20px;
+      height: 20px;
+      margin-left: .5rem;
+
+      path {
+        transition: stroke $duration $animation;
+        stroke: $black-bright;
+        stroke-width: 3px;
+      }
+    }
+
+    &:hover {
+      & > span {
+        color: $orange;
+      }
+
+      & > svg {
+        path {
+          stroke: $orange;
+        }
+      }
+    }
+  }
+
+  & > div {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    bottom: 0;
+    left: -9999px;
+    transition: opacity $duration $animation;
+    background-color: $grey-light;
+    box-shadow: $box-shadow;
+    border: 1px solid $grey;
+    border-radius: 10px;
+
+    &.-visible {
+      visibility: visible;
+      opacity: 1;
+      right: 0;
+      left: auto;
+    }
+
+    & > ul {
+      & > li {
+        @include interaction;
+        transition: color $duration $animation;
+        border-top: 1px solid $grey;
+        text-align: right;
+        font-weight: 500;
+
+        &:first-child {
+          border: none;
+        }
+
+        & > a {
+          position: relative;
+          display: block;
+          padding: .5rem .75rem .5rem 2.5rem;
+
+          &::before {
+            content: '\F012C';
+            position: absolute;
+            display: none;
+            top: calc(50% - 10px);
+            left: .5rem;
+            width: 20px;
+            height: 20px;
+            transition: color $duration $animation;
+            background: none;
+            text-align: center;
+            line-height: 1;
+            color: $black-bright;
+            font-family: $ff-icon;
+            font-size: $middle-font-size;
+            font-weight: normal;
+          }
+
+          &:hover {
+            color: $orange;
+
+            &::before {
+              color: $orange;
+            }
+          }
+        }
+
+        &.-selected {
+          & > a {
+            &::before {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//News, article, offer blocks//
+.info-block {
+  &__item {
+    display: flex;
+    width: calc(100% / 3);
+    padding: 1rem;
+  }
+
+  &__link {
+    display: block;
+    padding: 1.5rem;
+    transition: box-shadow $duration $animation;
+    background-color: $white;
+    border-radius: 10px;
+
+    &:hover {
+      box-shadow: $box-shadow;
+
+      .info-block__title {
+        h4 {
+          color: $orange;
+        }
+      }
+    }
+  }
+
+  &__img-wrap {
+    position: relative;
+    max-width: 365px;
+    width: 100%;
+    margin: 0 auto 1.5rem;
+  }
+
+  &__img {
+    @include image-block;
+    padding-top: 61%;
+    border-radius: 10px;
+  }
+
+  &__quantity {
+    position: absolute;
+    bottom: .75rem;
+    right: .75rem;
+    padding: .25rem .75rem;
+    background-color: $grey;
+    border-radius: 40px;
+
+    & > span {
+      font-weight: 500;
+    }
+  }
+
+  &__date {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: .5rem;
+
+    & > svg {
+      display: block;
+      width: 21px;
+      height: 21px;
+      margin-right: .5rem;
+
+      path {
+        fill: $black-light;
+      }
+    }
+
+    p {
+      color: $black-light;
+      font-size: $small-font-size;
+    }
+  }
+
+  &__title {
+    h4 {
+      transition: color $duration $animation;
+    }
+  }
+
+  &__desc {
+    p {
+      color: $black-bright;
+    }
+  }
+}
+
+//Popup shop catalog filter and shop cart product list
+.-mobile-popup-close {
+  position: relative;
+  display: none;
+  overflow: hidden;
+  width: calc(100% - 2rem);
+  padding-left: 1.75rem;
+  margin: 0 1rem .5rem;
+  background: none;
+  border-radius: 0;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &::before {
+    content: '\F0141';
+    position: absolute;
+    display: block;
+    top: calc(50% - 10px);
+    left: 0;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+    color: $green;
+    font-size: $middle-font-size;
+    font-family: $ff-icon;
+    font-weight: 400;
+  }
+}

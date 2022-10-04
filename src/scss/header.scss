@@ -1,0 +1,317 @@
+.top-wrapper {
+  position: relative;
+  z-index: 6;
+  padding: .25rem 0;
+  background-color: $grey-light;
+
+  .container {
+    @include flex-between-middle;
+  }
+
+  &__container {
+    @include flex-start-middle;
+  }
+
+  &__menu {
+    padding: .5rem 0;
+
+    & > ul {
+      display: flex;
+
+      & > li {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          display: block;
+          top: calc(50% - 14px);
+          left: 0;
+          width: 1px;
+          height: 28px;
+          background-color: $grey;
+        }
+
+        & > a {
+          display: block;
+          user-select: none;
+          padding: .25rem 1rem;
+          white-space: nowrap;
+        }
+
+        &:first-child {
+          &:hover {
+            & > a {
+              & > svg {
+                path {
+                  stroke: $orange;
+                }
+              }
+
+              & > span {
+                transition: color $duration $animation;
+              }
+            }
+
+            .top-wrapper__city {
+              visibility: visible;
+              opacity: 1;
+              left: 0;
+              transform: rotateX(0);
+            }
+          }
+
+          &::before {
+            display: none;
+          }
+
+          & > a {
+            padding-left: 1.75rem;
+
+            & > svg {
+              left: 0;
+
+              path {
+                stroke: $green-light-text;
+              }
+            }
+
+            &:hover {
+              & > span {
+                color: $orange;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__city {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: 100%;
+    left: -9999px;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0;
+    width: 200px;
+    transition: opacity $duration $animation, transform $duration $animation;
+    padding-top: .75rem;
+  }
+
+  &__city-wrap {
+    background-color: $grey-light;
+    box-shadow: $box-shadow;
+    border: 1px solid $grey;
+    border-radius: 10px;
+
+    & > a {
+      position: relative;
+      display: block;
+      padding: .5rem 1.5rem;
+
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: .5rem;
+        width: calc(100% - 1rem);
+        height: 1px;
+        background-color: $grey;
+      }
+
+      &:first-child {
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__socials {
+    @include flex-start-middle;
+    margin: -.25rem;
+    padding: .5rem 1.5rem;
+  }
+
+  &__work-time {
+    position: relative;
+    padding: .5rem 0 .5rem 1.75rem;
+
+    & > svg {
+      position: absolute;
+      display: block;
+      top: calc(50% - 10px);
+      left: 0;
+      width: 20px;
+      height: 20px;
+
+      path {
+        stroke: $green-light-text;
+      }
+    }
+
+    span {
+      &:last-child {
+        color: $black-light;
+      }
+    }
+  }
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+  font-weight: 500;
+
+  &__container {
+    position: relative;
+    z-index: 5;
+    padding: .75rem 0;
+    background-color: $white;
+    border-bottom: 1px solid $grey;
+
+    .container {
+      @include flex-start-middle-no-wrap;
+    }
+  }
+
+  &__logo {
+    width: 218px;
+    padding: .5rem 0;
+
+    & > a {
+      display: block;
+      user-select: none;
+      font-size: 0;
+    }
+  }
+
+  &__search {
+    flex-grow: 1;
+    padding: .5rem 2rem;
+  }
+
+  &__phone {
+    display: flex;
+    flex-grow: 0;
+    padding: .5rem 0;
+    white-space: nowrap;
+  }
+
+  &__phone-code {
+    padding-right: .5rem;
+
+    & > span {
+      transition: color $duration $animation;
+      line-height: $base-line-height;
+      color: $grey-dark;
+      font-size: $middle-font-size;
+
+      &.-hovering {
+        color: $orange;
+      }
+    }
+  }
+
+  &__phone-numbers {
+    & > p {
+      display: block;
+      margin: 0;
+
+      & > a {
+        display: inline-block;
+        font-size: $middle-font-size;
+      }
+    }
+  }
+
+  &__shop-buttons {
+    display: flex;
+    flex-grow: 0;
+    align-items: center;
+    padding: .5rem 0 .5rem 3rem;
+  }
+
+  &__shopping-cart {
+    @include flex-start-middle;
+    position: relative;
+    margin-left: 3rem;
+
+    & > a {
+      display: flex;
+      align-items: center;
+      user-select: none;
+
+      &:hover {
+        .header__shopping-cart-btn {
+          & > svg {
+            path {
+              fill: $orange;
+            }
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .header__shopping-cart-list {
+        visibility: visible;
+        opacity: 1;
+        left: auto;
+        right: 0;
+        transform: rotateX(0);
+      }
+    }
+  }
+
+  &__shopping-cart-info {
+    margin-left: 1.5rem;
+
+    p {
+      margin: 0;
+      font-size: $small-font-size;
+
+      & > span {
+        font-size: $small-font-size;
+      }
+
+      &:first-child {
+        color: $grey-dark;
+      }
+    }
+  }
+
+  &__shopping-cart-list {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: 100%;
+    left: -9999px;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0;
+    transition: opacity $duration $animation, transform $duration $animation;
+    padding-top: .75rem;
+  }
+
+  &__shopping-cart-list-wrap {
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: $white;
+    width: 415px;
+    max-height: calc(100vh - 150px);
+    height: 100%;
+    padding: 0 1rem;
+    border: 1px solid $grey;
+    border-radius: 10px;
+    box-shadow: $box-shadow-light;
+  }
+
+  &__shopping-cart-summary {
+    padding: 1rem .25rem;
+    border-top: 1px dashed $grey;
+    text-align: right;
+  }
+}

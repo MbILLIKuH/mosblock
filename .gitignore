@@ -1,0 +1,6 @@
+.idea
+src/modules
+src/fonts
+src/img
+src/js/jquery.debounce-1.0.6.js
+src/js/jquery-3.6.0.min.js

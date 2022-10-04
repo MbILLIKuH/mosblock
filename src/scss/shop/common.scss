@@ -1,0 +1,115 @@
+.shop {
+  &__quantity {
+    display: flex;
+
+    input {
+      margin: 0 .5rem;
+      text-align: center;
+    }
+
+    &.-shop-item {
+      input {
+        width: calc(100% - 96px - 1rem);
+      }
+    }
+
+    &.-shop-product {
+      margin: 1rem;
+
+      input {
+        max-width: 175px;
+      }
+    }
+
+    &.-shop-cart {
+      input {
+        max-width: 60px;
+        padding: .25rem .5rem;
+        font-size: $small-font-size;
+      }
+    }
+  }
+
+  &__btn {
+    @include flex-center-middle-no-wrap;
+    @include button-green-light;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+
+    & > svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin: 0 auto;
+
+      path {
+        fill: $green-light-text;
+      }
+    }
+
+    &:hover {
+      @include button-green-light-hover;
+    }
+
+    &.-shop-cart {
+      width: 32px;
+      height: 32px;
+
+      & > svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  &__svg-btn {
+    @include flex-center-middle-no-wrap;
+
+    & > svg {
+      width: 20px;
+      height: 20px;
+      margin-right: .5rem;
+    }
+
+    span {
+      max-width: calc(100% - 20px - .5rem);
+    }
+
+    &.-shop-cart {
+      & > svg {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+      }
+    }
+  }
+
+  &__shop-cart {
+    @include button-green;
+
+    & > svg {
+      path {
+        fill: $white;
+      }
+    }
+
+    &:hover {
+      @include button-green-hover;
+    }
+
+    &.-added {
+      @include button-green-pressed;
+    }
+
+    &.-shop-item {
+      width: 100%;
+      margin-top: .75rem;
+    }
+
+    &.-shop-product {
+      min-width: 280px;
+      margin: 1rem;
+    }
+  }
+}

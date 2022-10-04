@@ -1,0 +1,443 @@
+//Product card//
+.shop-item {
+  &__block {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+
+    &.slick-slide {
+      .shop-item__block-inner {
+        &:hover {
+          box-shadow: $box-shadow-slider;
+        }
+      }
+    }
+  }
+
+  &__block-inner {
+    @include flex;
+    position: relative;
+    align-content: space-between;
+    max-width: 330px;
+    width: 100%;
+    background-color: $white;
+    border-radius: 10px;
+    transition: box-shadow $duration $animation, border-radius $duration $animation;
+
+    &:hover {
+      z-index: 6;
+      box-shadow: $box-shadow;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+
+      .shop-item__compare.-full-screen {
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .shop-item__bottom {
+        &::before {
+          border-radius: 0;
+        }
+      }
+
+      .shop-item__additional {
+        visibility: visible;
+        opacity: 1;
+        transform: rotateX(0);
+        box-shadow: $box-shadow;
+      }
+    }
+  }
+
+  &__icons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    top: -.75rem;
+    left: -.75rem;
+
+    &.-discount {
+      .shop-item__icon.-discount {
+        display: block;
+      }
+    }
+
+    &.-new {
+      .shop-item__icon.-new {
+        display: block;
+      }
+    }
+
+    &.-thumb-up {
+      .shop-item__icon.-thumb-up {
+        display: block;
+      }
+    }
+  }
+
+  &__icon {
+    position: relative;
+    display: none;
+    width: 40px;
+    height: 40px;
+    margin: .25rem;
+    border-radius: 50%;
+
+    & > svg {
+      position: absolute;
+      display: block;
+    }
+
+    &.-active {
+      display: block;
+    }
+
+    &.-discount {
+      background-color: $orange;
+
+      & > svg {
+        top: calc(50% - 10px);
+        left: calc(50% - 10px);
+        width: 20px;
+        height: 20px;
+
+        path {
+          stroke: $white;
+        }
+      }
+    }
+
+    &.-new {
+      background-color: $green;
+
+      & > svg {
+        top: calc(50% - 15px);
+        left: calc(50% - 15px);
+        width: 30px;
+        height: 30px;
+
+        path {
+          fill: $white;
+        }
+      }
+    }
+
+    &.-thumb-up {
+      background-color: $yellow;
+
+      & > svg {
+        top: calc(50% - 12px);
+        left: calc(50% - 12px);
+        width: 24px;
+        height: 24px;
+
+        path {
+          fill: $black;
+        }
+      }
+    }
+  }
+
+  &__top, &__bottom {
+    position: relative;
+    width: 100%;
+  }
+
+  &__top {
+    padding: 1rem 1rem 0;
+  }
+
+  &__bottom {
+    position: relative;
+    padding: 0 1rem 1rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: 2;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: border-radius $duration $animation;
+      background-color: $white;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+  }
+
+  &__img {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__img-inner {
+    @include image-block;
+    width: 100%;
+    padding-top: 100%;
+  }
+
+  &__available {
+    display: flex;
+    margin: -28px 0 .25rem;
+  }
+
+  &__available-inner {
+    @include flex-start-middle-no-wrap;
+    padding: .25rem .5rem;
+    border-radius: 10px;
+    text-align: center;
+
+    & > svg {
+      width: 14px;
+      height: 14px;
+      margin-right: .25rem;
+    }
+
+    span {
+      font-size: $smallest-font-size;
+      font-weight: 500;
+    }
+
+    &.-available {
+      @include button-green-light;
+
+      & > svg {
+        path {
+          fill: $green-light-text;
+        }
+      }
+    }
+
+    &.-not-available {
+      @include button-orange-light;
+
+      & > svg {
+        path {
+          stroke: $orange;
+        }
+      }
+    }
+  }
+
+  &__filter {
+    & > span {
+      display: inline-block;
+    }
+
+    &.-common, &.-compact, &.-circle {
+      padding-top: .5rem;
+    }
+
+    &.-tabs {
+      form {
+        flex-wrap: wrap;
+      }
+    }
+
+    &.-common {
+      & > span {
+        display: block;
+        width: 100%;
+        font-size: $small-font-size;
+      }
+
+      .shop-item__filter-title {
+        color: $grey-dark;
+      }
+
+      .shop-item__filter-value {
+        padding-top: .25rem;
+        color: $black-bright;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+    }
+
+    &.-compact {
+      & > span {
+        display: inline;
+        font-size: $small-font-size;
+      }
+
+      .shop-item__filter-title {
+        color: $grey-dark;
+      }
+
+      .shop-item__filter-value {
+        font-weight: 700;
+      }
+    }
+
+    &.-circle {
+      form {
+        @include flex;
+        position: relative;
+        margin: -.25rem;
+
+        input {
+          &[type="radio"], &[type="checkbox"] {
+            position: absolute;
+            visibility: hidden;
+            z-index: -1;
+
+            & + label {
+              cursor: pointer;
+              display: inline-block;
+              width: 24px;
+              height: 24px;
+              margin: .25rem;
+              transition: border-color $duration $animation;
+              background-color: $grey;
+              border: 3px solid transparent;
+              border-radius: 50%;
+              font-size: 0;
+
+              &:hover {
+                border-color: $green-light-text-disable;
+              }
+            }
+
+            &:checked + label {
+              border-color: $green;
+            }
+          }
+        }
+      }
+    }
+
+    &.-tabs {
+      margin-left: .75rem;
+    }
+  }
+
+  &__title {
+    padding-top: .5rem;
+
+    a {
+      display: block;
+      color: $black;
+      font-weight: 700;
+    }
+  }
+
+  &__cost {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    padding-top: .5rem;
+  }
+
+  &__summary {
+    display: block;
+    white-space: nowrap;
+    font-size: $middle-font-size;
+    font-weight: 700;
+  }
+
+  &__additional {
+    @include flex-start-middle;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    transform: rotateX(90deg);
+    transform-origin: 50% 0;
+    width: 100%;
+    padding: .25rem 1rem 1rem;
+    transition: opacity $duration $animation, transform $duration $animation;
+    background-color: $white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  &__compare {
+    transition: opacity $duration $animation, background-color $duration $animation;
+
+    &.-added {
+      @include button-green-light-pressed;
+    }
+
+    &.-full-screen {
+      position: absolute;
+      visibility: hidden;
+      opacity: 0;
+      z-index: 5;
+      top: 1rem;
+      right: 1rem;
+
+      &.-added {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+
+    &.-mobile {
+      display: none;
+      width: calc(50% - .5rem);
+      margin: .75rem .5rem 0 0;
+    }
+  }
+
+  &__information {
+    width: 100%;
+    margin-top: .5rem;
+    padding: .5rem;
+    background-color: $grey;
+    border-radius: 10px;
+
+    & > svg {
+      path {
+        fill: $black-bright;
+      }
+    }
+
+    span {
+      font-size: $small-font-size;
+      font-weight: 500;
+    }
+  }
+}
+
+.slick-slide {
+  .shop-item {
+    &__block-inner {
+      &:hover {
+        border-radius: 10px;
+
+        .shop-item__additional {
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+
+    &__bottom {
+      &::before {
+        display: none;
+      }
+    }
+
+    &__additional {
+      @include flex-start-middle;
+      position: relative;
+      visibility: visible;
+      opacity: 1;
+      z-index: 3;
+      top: auto;
+      left: auto;
+      transform: none;
+      padding: 1.25rem 0 0;
+      transition: opacity $duration $animation, transform $duration $animation;
+      background-color: $white;
+      border-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,468 @@
+//Shop cart//
+.shop-cart {
+  overflow: hidden;
+  padding: 3rem 0;
+
+  .container {
+    @include flex-between-top;
+  }
+
+  &__order-forms {
+    width: calc(100% - 415px);
+    padding-right: 2rem;
+  }
+
+  &__order-list-wrap {
+    width: 415px;
+  }
+
+  &__order-list {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background-color: $white;
+    border-radius: 10px;
+  }
+
+  &__title {
+    @include flex-start-middle;
+    width: calc(100% + 1rem);
+    margin: -.5rem -.5rem 1.5rem;
+
+    & > h1, & > span {
+      margin: .5rem;
+    }
+
+    & > span {
+      color: $grey-dark;
+      font-size: 40px;
+    }
+  }
+
+  &__wrap {
+    @include flex-between-top;
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding: 2rem 1.5rem;
+    background-color: $white;
+    border-radius: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__products {
+    display: none;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    &.-active {
+      .shop-cart__products-btn {
+        &::before {
+          content: '\F0143';
+        }
+      }
+    }
+  }
+
+  &__products-info {
+    margin-right: 1.5rem;
+  }
+
+  &__products-cost {
+    p {
+      font-size: $big-font-size;
+      font-weight: 700;
+    }
+  }
+
+  &__products-btn {
+    position: relative;
+    background-color: $grey-light;
+
+    &::before {
+      content: '\F0140';
+      position: absolute;
+      display: block;
+      top: calc(50% - 16px);
+      left: calc(50% - 16px);
+      width: 32px;
+      height: 32px;
+      line-height: 1;
+      text-align: center;
+      color: $black-bright;
+      font-family: $ff-icon;
+      font-size: 32px;
+      font-weight: 500;
+    }
+
+    &:hover {
+      background-color: $grey-light;
+    }
+  }
+
+  &__customer {
+    .shop-cart__tabs-btn {
+      margin-bottom: 2rem;
+    }
+
+    .shop-cart__tab {
+      margin: 0;
+    }
+  }
+
+  &__tab {
+    form {
+      @include flex-between;
+      width: calc(100% + 1rem);
+      margin: -.5rem;
+
+      & > div, & > input, & > textarea, & > select, & > p {
+        width: calc(100% - 1rem);
+        margin: .5rem;
+
+        &.-w-6 {
+          width: calc(50% - 1rem);
+        }
+      }
+
+      & > div {
+        input, textarea, select {
+          width: 100%;
+        }
+      }
+
+      & > p {
+        display: flex;
+        color: $black-bright;
+
+        &.-icon-pin {
+          & > svg {
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin-right: .75rem;
+
+            path {
+              stroke: $green;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__order-form-btn {
+    @include button-green;
+    width: 100%;
+    margin-top: 2rem;
+
+    &:hover {
+      @include button-green-hover;
+      color: $white;
+    }
+  }
+
+  &__order-agreement {
+    display: block;
+    margin-top: 1rem;
+
+    a {
+      color: $green;
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+
+  &__order {
+    @include flex-between-middle;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed $grey;
+  }
+
+  &__order-title {
+    font-weight: 500;
+  }
+
+  &__order-decline {
+    padding: 0;
+    transition: color $duration ease;
+    background: none;
+    border-radius: 0;
+    color: $green;
+    font-weight: 500;
+
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  //Shopping cart item//
+  &__item {
+    padding: 1rem 0;
+    border-top: 1px dashed $grey;
+
+    &:first-child {
+      border: none;
+    }
+
+    &.-deleted {
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, .75);
+      }
+
+      .shop-cart__item-delete {
+        display: none;
+      }
+
+      .shop-cart__item-recover {
+        position: relative;
+        z-index: 5;
+        display: flex;
+      }
+    }
+  }
+
+  &__item-desc {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__item-img {
+    @include image-block;
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  &__item-info {
+    flex-grow: 1;
+    margin: 0 1rem;
+  }
+
+  &__item-title {
+    line-height: $small-line-height;
+    font-size: $small-font-size;
+    font-weight: 500;
+  }
+
+  &__item-filter {
+    margin-top: .25rem;
+
+    &.-common {
+      & > span {
+        display: inline;
+        font-size: $smallest-font-size;
+      }
+
+      .shop-product__filter-title {
+        color: $grey-dark;
+      }
+
+      .shop-product__filter-value {
+        font-weight: 700;
+      }
+    }
+
+    &.-circle {
+      form {
+        @include flex;
+        position: relative;
+        margin: -.25rem;
+
+        input {
+          &[type="radio"], &[type="checkbox"] {
+            position: absolute;
+            visibility: hidden;
+            z-index: -1;
+
+            + label {
+              cursor: pointer;
+              display: inline-block;
+              width: 16px;
+              height: 16px;
+              margin: .25rem;
+              transition: border-color $duration ease;
+              background-color: $grey;
+              border: 2px solid transparent;
+              border-radius: 50%;
+              font-size: 0;
+
+              &:hover {
+                border-color: $green-light-text-disable;
+              }
+            }
+
+            &:checked + label {
+              border-color: $green;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__item-cost {
+    text-align: right;
+
+    & > span {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__item-price {
+    white-space: nowrap;
+    font-size: $middle-font-size;
+    font-weight: 700;
+  }
+
+  &__item-amount {
+    padding-top: .25rem;
+    color: $grey-dark;
+    font-size: $small-font-size;
+  }
+
+  &__item-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  &__item-delete, &__item-recover {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+  }
+
+  &__item-delete {
+    @include button-orange-light;
+
+    & > svg {
+      path {
+        fill: $orange;
+      }
+    }
+
+    &:hover {
+      @include button-orange-light-hover;
+    }
+  }
+
+  &__item-recover {
+    @include button-green-light;
+    display: none;
+
+    & > svg {
+      path {
+        fill: $green-light-text;
+      }
+    }
+
+    &:hover {
+      @include button-green-light-hover;
+    }
+  }
+
+  &__promo-code {
+    display: flex;
+    width: 100%;
+    padding: 2rem 0;
+    border-top: 1px dashed $grey;
+  }
+
+  &__promo-code-input-wrap {
+    position: relative;
+    flex-grow: 1;
+    margin-right: 1rem;
+
+    &::after {
+      content: '\F012C';
+      position: absolute;
+      z-index: 1;
+      display: none;
+      top: calc(50% - 10px);
+      right: .5rem;
+      width: 20px;
+      height: 20px;
+      text-align: center;
+      line-height: 1;
+      color: $grey-dark;
+      font-family: $ff-icon;
+      font-size: $middle-font-size;
+      font-weight: normal;
+    }
+
+    input {
+      position: relative;
+      z-index: 5;
+      padding-right: 2.5rem;
+      background: none;
+    }
+
+    &.-checked {
+      &::after {
+        display: block;
+      }
+    }
+  }
+
+  &__promo-code-input {
+    width: 100%;
+  }
+
+  &__promo-code-btn {
+    @include button-green;
+
+    &:hover {
+      @include button-green-hover;
+    }
+
+    &.-delete {
+      @include button-orange;
+
+      &:hover {
+        @include button-orange-hover;
+      }
+    }
+  }
+
+  &__price {
+    @include flex-between;
+    width: calc(100% + 1rem);
+    margin: -.5rem -.5rem .5rem;
+
+    & > span {
+      margin: .5rem;
+    }
+
+    &:last-child {
+      margin-bottom: -.5rem;
+    }
+
+    &.-summary {
+      margin-top: 0;
+      padding-top: .5rem;
+      border-top: 1px dashed $grey;
+    }
+  }
+
+  &__price-amount {
+    font-weight: 700;
+  }
+}

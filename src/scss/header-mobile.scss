@@ -1,0 +1,446 @@
+.header-mobile {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  padding: .75rem 0;
+  background-color: $white;
+  border-bottom: 1px solid $grey-light;
+
+  & > .container {
+    @include flex-between-middle-no-wrap;
+    position: relative;
+    z-index: 1;
+
+    &.-foreground {
+      z-index: 3;
+    }
+  }
+
+  &__info {
+    @include flex-between-middle-no-wrap;
+    margin-right: 1rem;
+  }
+
+  &__menu-btn {
+    margin: -.25rem;
+  }
+
+  &__menu-btn-icon {
+    position: absolute;
+    display: block;
+    top: calc(50% - 1px);
+    left: calc(50% - 10px);
+    width: 20px;
+    height: 2px;
+    transition: background-color $duration $animation, width $duration $animation;
+    background-color: $black-light;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      transition: transform $duration $animation;
+      background-color: $black-light;
+    }
+
+    &::before {
+      top: -5px;
+    }
+
+    &::after {
+      top: 5px;
+    }
+
+    &.-close {
+      width: 0;
+      background-color: rgba(255, 255, 255, 0);
+
+      &::before {
+        top: 0;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        top: 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__logo {
+    width: 109px;
+    margin-left: 1rem;
+
+    & > a {
+      display: block;
+      user-select: none;
+      font-size: 0;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: -.25rem;
+  }
+
+  &__info-block {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: calc(100% + .75rem);
+    left: -9999px;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0;
+    width: 105%;
+    padding: .75rem 2.5%;
+    transition: opacity $duration $animation, transform $duration $animation;
+    background-color: $white;
+    border-bottom: 1px solid $grey-light;
+    border-radius: 0 0 10px 10px;
+
+    &.-visible {
+      visibility: visible;
+      opacity: 1;
+      left: -2.5%;
+      transform: rotateX(0);
+    }
+
+    p, a, span, input {
+      font-size: $base-font-size;
+    }
+  }
+
+  &__menu { //Выпадающее меню
+    position: fixed;
+    overflow: hidden;
+    opacity: 0;
+    z-index: 2;
+    top: 64px;
+    right: 100%;
+    width: 100%;
+    height: calc(100vh - 64px);
+    transition: opacity $duration $animation, right $duration $animation;
+    background-color: $white;
+
+    &.-visible {
+      opacity: 1;
+      right: 0;
+    }
+  }
+
+  &__menu-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__menu-top {
+    width: 95%;
+    height: 116px;
+    margin: 0 auto;
+    padding: 1rem 0 .75rem;
+  }
+
+  &__city {
+    position: relative;
+    padding-bottom: 1rem;
+  }
+
+  &__city-btn {
+    @include flex-start-middle-no-wrap;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+
+    & > svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-right: .5rem;
+
+      path {
+        stroke: $green;
+      }
+    }
+
+    & > span {
+      font-size: $base-font-size;
+      font-weight: 500;
+    }
+  }
+
+  &__city-list {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: calc(100% - .25rem);
+    left: -9999px;
+    transform: rotateX(-90deg);
+    transform-origin: 50% 0;
+    width: 100%;
+    transition: opacity $duration $animation, transform $duration $animation;
+    background-color: $grey-light;
+    border: 1px solid $grey;
+    border-radius: 10px;
+
+    &.-visible {
+      visibility: visible;
+      opacity: 1;
+      left: 0;
+      transform: rotateX(0);
+    }
+
+    & > a {
+      display: block;
+      padding: .5rem 1rem;
+      font-size: $base-font-size;
+
+      &:not(:first-child) {
+        border-top: 1px solid $grey;
+      }
+    }
+  }
+
+  &__catalog-btn {
+    @include flex-center-middle-no-wrap;
+    @include button-orange;
+    width: 100%;
+
+    & > svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-right: .5rem;
+
+      path {
+        fill: $white;
+      }
+    }
+
+    & > span {
+      font-size: $base-font-size;
+    }
+  }
+
+  &__catalog-block {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 100%;
+    width: 100%;
+    height: calc(100vh - 64px);
+    transition: right $duration $animation;
+    background-color: $white;
+
+    &.-visible {
+      right: 0;
+    }
+
+    ul {
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: calc(100% - 48px);
+      padding: 0 2.5%;
+
+      li {
+        position: static;
+
+        a {
+          @include flex-start-middle-no-wrap;
+          padding: .75rem 0;
+          font-size: $base-font-size;
+
+          & > span {
+            margin-left: .5rem;
+            color: $grey-dark;
+            font-size: $base-font-size;
+          }
+        }
+
+        &.-parent {
+          & > a {
+            position: relative;
+            padding-right: 1.75rem;
+
+            &::before {
+              content: '\F0142';
+              position: absolute;
+              display: block;
+              top: calc(50% - 10px);
+              right: 0;
+              width: 20px;
+              height: 20px;
+              line-height: 1;
+              color: $green;
+              font-size: $middle-font-size;
+              font-family: $ff-icon;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__catalog-img {
+    @include image-block;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    margin-right: .75rem;
+    border-radius: 10px;
+  }
+
+  &__catalog-back {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 95%;
+    padding-left: 1.75rem;
+    margin: 0 2.5%;
+    background: none;
+    border-radius: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::before {
+      content: '\F0141';
+      position: absolute;
+      display: block;
+      top: calc(50% - 10px);
+      left: 0;
+      width: 20px;
+      height: 20px;
+      line-height: 1;
+      color: $green;
+      font-size: $middle-font-size;
+      font-family: $ff-icon;
+      font-weight: 400;
+    }
+  }
+
+  &__menu-bottom {
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: auto;
+    align-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 116px);
+    padding: 0 2.5%;
+  }
+
+  &__menu-list {
+    flex-grow: 1;
+    padding-bottom: .75rem;
+
+    ul {
+      li {
+        font-size: $base-font-size;
+
+        a {
+          @include flex-between-middle-no-wrap;
+          padding: .75rem 0;
+          font-size: $base-font-size;
+
+          & > svg {
+            path {
+              fill: $green;
+            }
+          }
+        }
+      }
+    }
+
+    & > ul {
+      & > li {
+        &.-parent {
+          & > ul {
+            display: none;
+
+            & > li {
+              & > a {
+                padding-left: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__contacts {
+    padding: 2rem 0;
+    border-top: 1px solid $grey;
+  }
+
+  &__phone {
+    margin-bottom: 1rem;
+
+    & > p {
+      display: block;
+
+      & > a {
+        display: inline-block;
+        font-size: $middle-font-size;
+
+        & > span {
+          transition: color $duration $animation;
+          color: $grey-dark;
+          font-size: $middle-font-size;
+        }
+
+        &:hover {
+          & > span {
+            color: $orange;
+          }
+        }
+      }
+    }
+  }
+
+  &__work-time {
+    @include flex-start-middle-no-wrap;
+    margin-bottom: 1rem;
+
+    & > svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-right: .5rem;
+
+      path {
+        stroke: $green;
+      }
+    }
+
+    & > span {
+      margin-right: .5rem;
+      font-size: $base-font-size;
+      font-weight: 500;
+
+      &:last-child {
+        margin-right: 0;
+        color: $grey-dark;
+      }
+    }
+  }
+
+  &__socials {
+    @include flex-start-middle;
+    margin: -.25rem;
+
+    .btn-social {
+      background-color: $grey-light;
+    }
+  }
+}

@@ -1,0 +1,179 @@
+.footer {
+  position: relative;
+  z-index: 5;
+  padding: 3rem 0;
+  background: $white;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+
+  .container {
+    @include flex-between;
+  }
+
+  &__info {
+    width: 300px;
+  }
+
+  &__logo {
+    margin-bottom: 1.5rem;
+
+    & > a {
+      display: block;
+      user-select: none;
+      font-size: 0;
+    }
+  }
+
+  &__copyright {
+    margin-bottom: 1.5rem;
+
+    & > p {
+      margin: 0;
+      color: $black-light;
+      font-size: $small-font-size;
+      font-weight: 400;
+    }
+  }
+
+  &__socials {
+    @include flex-start-middle;
+    margin: -.25rem;
+  }
+
+  &__info-block {
+    margin-top: .75rem;
+  }
+
+  &__info-title {
+    margin: 0;
+    color: $grey-dark;
+    font-weight: 400;
+  }
+
+  &__sections {
+    width: calc(100% / 3 - 100px);
+    padding-left: 2rem;
+  }
+
+  &__catalog {
+    width: calc(100% / 3 * 2 - 200px);
+    padding-left: 2rem;
+
+    .footer__menu {
+      & > ul {
+        @include flex;
+
+        & > li {
+          width: 50%;
+        }
+      }
+    }
+  }
+
+  &__title {
+    margin-bottom: .75rem;
+
+    p {
+      color: $grey-dark;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+  }
+
+  &__menu {
+    font-weight: 500;
+  }
+
+  &__mobile {
+    @include flex-center-middle-no-wrap;
+    position: fixed;
+    overflow: hidden;
+    display: none;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    background-color: $white;
+    border-top: 1px solid $grey-light;
+    border-radius: 10px 10px 0 0;
+  }
+
+  &__mobile-menu {
+    display: flex;
+    justify-content: space-between;
+    max-width: $container-width-max;
+    width: 100%;
+  }
+
+  &__mobile-link {
+    @include flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% / 3);
+    text-align: center;
+    padding: .75rem 1rem .5rem;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: block;
+      z-index: 1;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      height: 100%;
+      transition: opacity $duration $animation;
+      background-color: $grey;
+    }
+
+    &:first-child {
+      &::before {
+        display: none;
+      }
+    }
+
+    .btn-qnt {
+      width: 20px;
+      height: 20px;
+
+      & > svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &__counter {
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        font-size: $smallest-font-size;
+      }
+    }
+
+    svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin: 0 auto;
+    }
+
+    & > p {
+      display: block;
+      width: 100%;
+      margin-top: 2px;
+      font-size: $smallest-font-size;
+
+      &.-price {
+        @include flex-center-middle-no-wrap;
+        margin: -2px;
+
+        & > span {
+          margin: 2px;
+          white-space: nowrap;
+          font-size: $smallest-font-size;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
